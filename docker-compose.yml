@@ -1,0 +1,37 @@
+version: "3.2"
+services:
+  www:
+    container_name: www
+    build:
+      context: .
+    ports:
+      - "9000:80"
+    volumes:
+      - ./:/var/www/html/      
+    environment:
+      - PHP_DISPLAY_ERRORS=1
+      - PHP_MEMORY_LIMIT=128M
+      - PHP_MAX_EXECUTION_TIME=500
+      - PHP_POST_MAX_SIZE=500M
+      - PHP_UPLOAD_MAX_FILESIZE=16M      
+    networks:
+      - dev-env
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:5.7.41
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./.tmp/mysql:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    networks:
+      - dev-env
+  
+networks:
+  dev-env:
