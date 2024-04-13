@@ -6,14 +6,9 @@ services:
       context: .
     ports:
       - "9000:80"
+    user: "${UID}:${GID}"
     volumes:
-      - ./:/var/www/html/      
-    environment:
-      - PHP_DISPLAY_ERRORS=1
-      - PHP_MEMORY_LIMIT=128M
-      - PHP_MAX_EXECUTION_TIME=500
-      - PHP_POST_MAX_SIZE=500M
-      - PHP_UPLOAD_MAX_FILESIZE=16M      
+      - ./:/var/www/html/          
     networks:
       - dev-env
     depends_on:
@@ -34,4 +29,4 @@ services:
       - dev-env
   
 networks:
-  dev-env:
+  dev-env: {}
