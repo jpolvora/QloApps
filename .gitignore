@@ -230,7 +230,7 @@ admin/themes/default/css/screen.css
 /mails/*
 !/mails/.htaccess
 !/mails/index.php
-!/mails/en/
+#!/mails/en/
 
 /themes/hotel-reservation-theme/cache/*
 !/themes/hotel-reservation-theme/cache/
@@ -255,3 +255,5 @@ admin/themes/default/css/screen.css
 
 **sitemap.xml
 robots.txt
+
+.tmp/

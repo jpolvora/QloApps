@@ -96,22 +96,24 @@ class AdminLoginControllerCore extends AdminController
             $this->context->smarty->assign('warningSslMessage', $warningSslMessage);
         }
 
-        if (file_exists(_PS_ADMIN_DIR_.'/../install')) {
-            $this->context->smarty->assign('wrong_install_name', true);
-        }
+        // if (file_exists(_PS_ADMIN_DIR_.'/../install')) {
+        //     $this->context->smarty->assign('wrong_install_name', true);
+        // }
 
-        if (basename(_PS_ADMIN_DIR_) == 'admin' && file_exists(_PS_ADMIN_DIR_.'/../admin/')) {
-            $rand = 'admin'.sprintf('%03d', rand(0, 999)).Tools::strtolower(Tools::passwdGen(6)).'/';
-            if (@rename(_PS_ADMIN_DIR_.'/../admin/', _PS_ADMIN_DIR_.'/../'.$rand)) {
-                Tools::redirectAdmin('../'.$rand);
-            } else {
-                $this->context->smarty->assign(array(
-                    'wrong_folder_name' => true
-                ));
-            }
-        } else {
-            $rand = basename(_PS_ADMIN_DIR_).'/';
-        }
+        // if (basename(_PS_ADMIN_DIR_) == 'admin' && file_exists(_PS_ADMIN_DIR_.'/../admin/')) {
+        //     $rand = 'admin'.sprintf('%03d', rand(0, 999)).Tools::strtolower(Tools::passwdGen(6)).'/';
+        //     if (@rename(_PS_ADMIN_DIR_.'/../admin/', _PS_ADMIN_DIR_.'/../'.$rand)) {
+        //         Tools::redirectAdmin('../'.$rand);
+        //     } else {
+        //         $this->context->smarty->assign(array(
+        //             'wrong_folder_name' => true
+        //         ));
+        //     }
+        // } else {
+        //     $rand = basename(_PS_ADMIN_DIR_).'/';
+        // }
+
+        $rand = basename(_PS_ADMIN_DIR_).'/';
 
         $this->context->smarty->assign(array(
             'randomNb' => $rand,
